@@ -1,1 +1,1 @@
-window.Lens = require("./src/elife_lens");
+window.Lens = require("./src/app");

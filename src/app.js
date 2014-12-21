@@ -13,24 +13,24 @@ var panels = Lens.getDefaultPanels();
 // Find the code in panels/altmetrics and use it as an inspiration
 // to build your own Lens panel
 
-var altmetricsPanel = require('./panels/altmetrics/altmetrics_panel');
+var altmetricsPanel = require('./panels/altmetrics');
 
 // Insert altmetrics panel at next to last position
 panels.splice(-1, 0, altmetricsPanel);
 
-var ElifeLens = function(config) {
+var LensApp = function(config) {
   Lens.call(this, config);
 };
 
-ElifeLens.Prototype = function() {
+LensApp.Prototype = function() {
 
   this.getPanels = function() {
     return panels.slice(0);
   };
 };
 
-ElifeLens.Prototype.prototype = Lens.prototype;
-ElifeLens.prototype = new ElifeLens.Prototype();
-ElifeLens.prototype.constructor = ElifeLens;
+LensApp.Prototype.prototype = Lens.prototype;
+LensApp.prototype = new LensApp.Prototype();
+LensApp.prototype.constructor = LensApp;
 
-module.exports = ElifeLens;
+module.exports = LensApp;
