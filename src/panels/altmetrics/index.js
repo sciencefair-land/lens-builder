@@ -6,7 +6,6 @@ var AltmetricsController = require('./altmetrics_controller');
 var panel = new Panel({
 	name: "altmetrics",
   type: 'resource',
-  label: 'Altmetrics',
   title: 'Altmetrics',
   icon: 'icon-bar-chart',
 });

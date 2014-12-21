@@ -22,24 +22,21 @@ AltmetricsView.Prototype = function() {
         console.error("Could not retrieve altmetrics data:", err);
       }
     });
-
     
     return this;
   };
 
   this.renderAltmetrics = function(altmetrics) {
+    // Finally data is available so we tell the panel to show up as a tab
     this.showToggle();
 
     var $altmetrics = $('<div class="altmetrics"></div>');
     $altmetrics.append($('<div class="label">Altmetric.com Score</div>'));
     $altmetrics.append($('<div class="value"></div>').text(altmetrics.score));
-
     $altmetrics.append($('<div class="label">Cited on Twitter</div>'));
     $altmetrics.append($('<div class="value"></div>').text(altmetrics.cited_by_tweeters_count));
-
     $altmetrics.append($('<div class="label">Readers on Mendeley</div>'));
     $altmetrics.append($('<div class="value"></div>').text(altmetrics.readers.mendeley));
-
     $altmetrics.append($('<div class="copyright">Data provided by <a href="http://altmetric.com">altmetrics.com</div>'));
 
     this.$el.append($altmetrics);
