@@ -7,7 +7,7 @@ var panel = new Panel({
 	name: "altmetrics",
   type: 'resource',
   title: 'Altmetrics',
-  icon: 'icon-bar-chart',
+  icon: 'fa-bar-chart-o',
 });
 
 panel.createController = function(doc) {

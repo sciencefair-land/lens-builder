@@ -1,7 +1,7 @@
 var util = require("substance-util");
 
 var AltmetricsService = function() {
-
+  
 };
 
 AltmetricsService.Prototype = function() {

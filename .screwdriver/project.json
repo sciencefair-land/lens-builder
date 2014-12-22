@@ -21,11 +21,6 @@
       "branch": "master"
     },
     {
-      "repository": "https://github.com/substance/toc.git",
-      "folder": "node_modules/substance-toc",
-      "branch": "lens"
-    },
-    {
       "repository": "https://github.com/substance/util.git",
       "folder": "node_modules/substance-util",
       "branch": "lens"
@@ -74,17 +69,14 @@
     "styles/nodes/caption.css": "node_modules/lens-article/nodes/caption/caption.css",
     "styles/nodes/contributor.css": "node_modules/lens-article/nodes/contributor/contributor.css",
     "styles/nodes/publication_info.css": "node_modules/lens-article/nodes/publication_info/publication_info.css",
-    "styles/toc.css": "node_modules/substance-toc/toc.css",
     "styles/surface.css": "node_modules/lens/styles/surface.css",
     "styles/reader.css": "node_modules/lens/styles/reader.css",
     "styles/altmetrics.css": "src/panels/altmetrics/altmetrics.css",
     "styles/lens.css":  "node_modules/lens/styles/lens.css"
   },
   "assets": {
-    "lib/jquery-2.0.3.min.js": "node_modules/lens/lib/jquery-2.0.3.min.js",
-    "lib/jquery-2.0.3.min.map": "node_modules/lens/lib/jquery-2.0.3.min.map",
-    "styles/font-awesome.css": "node_modules/lens/styles/font-awesome.css",
-    "styles/fonts": "node_modules/lens/styles/fonts",
+    "lib/jquery.min.js": "node_modules/lens/lib/jquery.min.js",
+    "lib/jquery.min.map": "node_modules/lens/lib/jquery.min.map",
     "styles/elife.png": "node_modules/lens/styles/elife.png",
     "doc.html": "doc.html"
   },
