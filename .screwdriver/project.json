@@ -33,12 +33,12 @@
     {
       "repository": "https://github.com/elifesciences/lens-converter.git",
       "folder": "node_modules/lens-converter",
-      "branch": "master"
+      "branch": "inheritance-over-config"
     },
     {
       "repository": "https://github.com/elifesciences/lens.git",
       "folder": "node_modules/lens",
-      "branch": "master"
+      "branch": "inheritance-over-config"
     }
   ],
   "node_modules": {

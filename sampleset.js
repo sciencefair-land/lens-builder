@@ -23,5 +23,15 @@ module.exports = [
         "comment": ""
       }
     ]
+  },
+  {
+    "name": "PLOS Samples",
+    "samples": [
+      {
+        "url": "data/plos_example.xml",
+        "comment": ""
+      }
+    ]
   }
+  
 ];
