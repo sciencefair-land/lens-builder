@@ -42,6 +42,7 @@ CustomConverter.Prototype = function() {
       url,
       "&representation=PNG_L"
     ].join('');
+    
     node.url = url;
   };
 

@@ -2,7 +2,7 @@
 
 var Lens = require("lens");
 var panels = Lens.getDefaultPanels();
-	
+  
 // All available converters
 var LensConverter = require("lens-converter");
 var CustomConverter = require("./custom_converter");
@@ -12,17 +12,17 @@ var PLOSConverter = require("lens-converter/plos_converter");
 // Custom Panels
 // -------------------
 // 
-// Uncomment the following lines to enable the altmetrics panel
+// The following lines enable the altmetrics panel
 // which can be considered a demo implementation for a custom
 // panel in Lens
 // 
 // Find the code in panels/altmetrics and use it as an inspiration
 // to build your own Lens panel
 
-// var altmetricsPanel = require('./panels/altmetrics');
+var altmetricsPanel = require('./panels/altmetrics');
 
 // Insert altmetrics panel at next to last position
-// panels.splice(-1, 0, altmetricsPanel);
+panels.splice(-1, 0, altmetricsPanel);
 
 var LensApp = function(config) {
   Lens.call(this, config);
@@ -30,27 +30,27 @@ var LensApp = function(config) {
 
 LensApp.Prototype = function() {
 
-	// Custom converters
-	// --------------
-	// 
-	// Provides a sequence of converter instances
-	// Converter.match will be called on each instance with the
-	// XML document to processed. The one that returns true first
-	// will be chosen. You can change the order prioritize
-	// converters over others
+  // Custom converters
+  // --------------
+  // 
+  // Provides a sequence of converter instances
+  // Converter.match will be called on each instance with the
+  // XML document to processed. The one that returns true first
+  // will be chosen. You can change the order prioritize
+  // converters over others
 
   this.getConverters = function(converterOptions) {
-  	return [
-  		new CustomConverter(converterOptions),
-  		new ElifeConverter(converterOptions),
-  		new PLOSConverter(converterOptions),
-  		new LensConverter(converterOptions)
-  	]
+    return [
+      new CustomConverter(converterOptions),
+      new ElifeConverter(converterOptions),
+      new PLOSConverter(converterOptions),
+      new LensConverter(converterOptions)
+    ]
   };
 
-	// Custom panels
-	// --------------
-	// 
+  // Custom panels
+  // --------------
+  // 
 
   this.getPanels = function() {
     return panels.slice(0);
