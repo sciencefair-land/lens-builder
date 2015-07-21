@@ -1,6 +1,6 @@
 "use strict";
 
-var LensNodes = require("lens-article/nodes");
+var LensNodes = require("lens/article/nodes");
 var CoverModel = LensNodes["cover"].Model;
 
 module.exports = {

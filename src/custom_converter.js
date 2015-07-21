@@ -1,10 +1,8 @@
 "use strict";
 
-var util = require("substance-util");
-var _ = require("underscore");
-var LensConverter = require('lens-converter');
+var LensConverter = require('lens/converter');
 
-var LensArticle = require("lens-article");
+var LensArticle = require("lens/article");
 var CustomNodeTypes = require("./nodes");
 
 var CustomConverter = function(options) {
@@ -13,9 +11,7 @@ var CustomConverter = function(options) {
 
 CustomConverter.Prototype = function() {
 
-  var __super__ = LensConverter.prototype;
-
-  this.test = function(xmlDoc, documentUrl) {
+  this.test = function(xmlDoc) {
     var publisherName = xmlDoc.querySelector("publisher-name").textContent;
     return publisherName === "My Journal";
   };
@@ -36,16 +32,40 @@ CustomConverter.Prototype = function() {
   this.enhanceFigure = function(state, node, element) {
     var graphic = element.querySelector("graphic");
     var url = graphic.getAttribute("xlink:href");
-
-    url = [
-      "http://www.plosone.org/article/fetchObject.action?uri=",
-      url,
-      "&representation=PNG_L"
-    ].join('');
-    
-    node.url = url;
+    node.url = this.resolveURL(state, url);
   };
 
+
+  // Example url to JPG: http://cdn.elifesciences.org/elife-articles/00768/svg/elife00768f001.jpg
+  this.resolveURL = function(state, url) {
+    // Use absolute URL
+    if (url.match(/http:\/\//)) return url;
+
+    // Look up base url
+    var baseURL = this.getBaseURL(state);
+
+    if (baseURL) {
+      return [baseURL, url].join('');
+    } else {
+      // Use special URL resolving for production articles
+      return [
+        "http://cdn.elifesciences.org/elife-articles/",
+        state.doc.id,
+        "/jpg/",
+        url,
+        ".jpg"
+      ].join('');
+    }
+  };
+
+  this.enhanceVideo = function(state, node, element) {
+    var href = element.getAttribute("xlink:href").split(".");
+    var name = href[0];
+    node.url = "http://api.elifesciences.org/v2/articles/"+state.doc.id+"/media/file/"+name+".mp4";
+    node.url_ogv = "http://api.elifesciences.org/v2/articles/"+state.doc.id+"/media/file//"+name+".ogv";
+    node.url_webm = "http://api.elifesciences.org/v2/articles/"+state.doc.id+"/media/file//"+name+".webm";
+    node.poster = "http://api.elifesciences.org/v2/articles/"+state.doc.id+"/media/file/"+name+".jpg";
+  };
 };
 
 CustomConverter.Prototype.prototype = LensConverter.prototype;

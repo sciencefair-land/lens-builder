@@ -1,4 +1,4 @@
-var PanelController = require("lens").PanelController;
+var PanelController = require("lens/reader").PanelController;
 var AltmetricsView = require("./altmetrics_view");
 
 var AltmetricsController = function(document, config) {

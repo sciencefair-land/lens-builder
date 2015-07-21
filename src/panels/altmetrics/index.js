@@ -1,6 +1,6 @@
 "use strict";
 
-var Panel = require('lens').Panel;
+var Panel = require('lens/reader').Panel;
 var AltmetricsController = require('./altmetrics_controller');
 
 var panel = new Panel({

@@ -1,13 +1,12 @@
 "use strict";
 
-var Lens = require("lens");
+var Lens = require("lens/reader");
 var panels = Lens.getDefaultPanels();
   
 // All available converters
-var LensConverter = require("lens-converter");
+var LensConverter = require("lens/converter");
 var CustomConverter = require("./custom_converter");
-var ElifeConverter = require("lens-converter/elife_converter");
-var PLOSConverter = require("lens-converter/plos_converter");
+var ElifeConverter = require("lens/converter/elife_converter");
 
 // Custom Panels
 // -------------------
@@ -43,7 +42,6 @@ LensApp.Prototype = function() {
     return [
       new CustomConverter(converterOptions),
       new ElifeConverter(converterOptions),
-      new PLOSConverter(converterOptions),
       new LensConverter(converterOptions)
     ]
   };

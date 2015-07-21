@@ -1,5 +1,3 @@
-var util = require("substance-util");
-
 var AltmetricsService = function() {
   
 };

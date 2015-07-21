@@ -1,4 +1,4 @@
-var PanelView = require('lens').PanelView;
+var PanelView = require('lens/reader').PanelView;
 
 var AltmetricsView = function(panelCtrl, config) {
   PanelView.call(this, panelCtrl, config);
