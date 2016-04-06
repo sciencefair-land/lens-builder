@@ -32,6 +32,14 @@ SciFairEuPmcConverter.Prototype = function() {
     node.url = path.join(relative_dir, 'figures', url);
   };
 
+  // Handle EuPMC citations nicely by adding `citation` type
+  this.citationTypes = {
+    "mixed-citation": true,
+    "element-citation": true,
+    "citation": true
+  };
+
+
 };
 
 SciFairEuPmcConverter.Prototype.prototype = LensConverter.prototype;
