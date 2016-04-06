@@ -25,3 +25,9 @@
 .altmetrics-panel .altmetrics {
   padding: 20px;
 }
+
+.content-node.figure div .image-wrapper img {
+  max-width: 100% !important;
+  height: auto !important;
+  width: auto;
+}
