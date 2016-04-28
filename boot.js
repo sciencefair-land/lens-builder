@@ -28,7 +28,7 @@ var qs = function () {
 // This document gets loaded by default
 // --------
 
-var documentURL = "data/example.xml";
+var documentURL = "data/PMC4467057/fulltext.xml";
 
 $(function() {
 
