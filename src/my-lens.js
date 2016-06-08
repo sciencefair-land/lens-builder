@@ -6,6 +6,7 @@ var panels = Lens.getDefaultPanels();
 // All available converters
 var LensConverter = require("lens/converter");
 var SciFairEuPmcConverter = require("./scifair_eupmc_converter");
+var SciFaireLifeConverter = require("./scifair_elife_converter");
 var ElifeConverter = require("lens/converter/elife_converter");
 
 var LensApp = function(config) {
@@ -26,6 +27,7 @@ LensApp.Prototype = function() {
   this.getConverters = function(converterOptions) {
     return [
       new SciFairEuPmcConverter(converterOptions),
+      new SciFaireLifeConverter(converterOptions),
       new ElifeConverter(converterOptions),
       new LensConverter(converterOptions)
     ]
