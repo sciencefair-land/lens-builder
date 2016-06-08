@@ -2,10 +2,11 @@
   "name": "lens-starter",
   "description": "Custom Lens bundle.",
   "dependencies": {
-    "underscore": "1.8.x",
-    "express": "3.3.x",
     "ejs": "*",
-    "lens": "elifesciences/lens.git#2.0.0"
+    "express": "3.3.x",
+    "lens": "elifesciences/lens.git#2.0.0",
+    "pretty-js": "^0.1.8",
+    "underscore": "1.8.x"
   },
   "devDependencies": {
     "browserify": "*",

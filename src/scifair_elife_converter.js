@@ -16,7 +16,7 @@ SciFaireLifeConverter.Prototype = function() {
   this.test = function(xmlDoc, documentUrl) {
     // save the doc url inside the doc so we can access it later
     xmlDoc.documentUrl = documentUrl
-    return /elife/.test(documentUrl)
+    return true
   };
 
   // Resolve asset urls
@@ -31,54 +31,49 @@ SciFaireLifeConverter.Prototype = function() {
   this.enhanceFigure = function(state, node, element) {
     console.log(state.xmlDoc.documentUrl)
     var graphic = element.querySelector("graphic");
-    var url = graphic.getAttribute("xlink:href");
-    url = url
-      .replace('http://cdn.elifesciences.org/elife-articles', '')
-      .replace('.jpg.jpg', '.jpg')
-      .replace('.tif.jpg', '.jpg')
-    node.url = this.getAssetUrl(url, state)
-  };
-
-  this._getFormulaData = function(formulaElement, inline, state) {
-    var result = [];
-    for (var child = formulaElement.firstElementChild; child; child = child.nextElementSibling) {
-      var type = util.dom.getNodeType(child);
-      switch (type) {
-        case "graphic":
-        case "inline-graphic":
-          result.push({
-            format: 'image',
-            data: this.getAssetUrl(child.getAttribute('xlink:href'), state)
-          });
-          break;
-        case "svg":
-          result.push({
-            format: "svg",
-            data: this.toHtml(child)
-          });
-          break;
-        case "mml:math":
-        case "math":
-          result.push({
-            format: "mathml",
-            data: this.mmlToHtmlString(child)
-          });
-          break;
-        case "tex-math":
-          result.push({
-            format: "latex",
-            data: child.textContent
-          });
-          break;
-        case "label":
-          // Skipping - is handled in this.formula()
-          break;
-        default:
-          console.error('Unsupported formula element of type ' + type);
+    if (graphic) {
+      var url = graphic.getAttribute("xlink:href");
+      if (url) {
+        url = url
+          .replace('http://cdn.elifesciences.org/elife-articles', '')
+          .replace('.jpg.jpg', '.jpg')
+          .replace('.tif.jpg', '.jpg')
+        node.url = this.getAssetUrl(url, state)
       }
     }
-    return result;
   };
+
+  // Catch-all implementation for figures et al.
+this.extractFigures = function(state, xmlDoc) {
+  // Globally query all figure-ish content, <fig>, <supplementary-material>, <table-wrap>, <media video>
+  // mimetype="video"
+  var body = xmlDoc.querySelector("body");
+
+  if (body) {
+    var figureElements = body.querySelectorAll("fig, table-wrap, supplementary-material, media[mimetype=video]");
+    var nodes = [];
+    for (var i = 0; i < figureElements.length; i++) {
+      var figEl = figureElements[i];
+      // skip converted elements
+      if (figEl._converted) continue;
+      var type = util.dom.getNodeType(figEl);
+      var node = null;
+      if (type === "fig") {
+        node = this.figure(state, figEl);
+      } else if (type === "table-wrap") {
+        node = this.tableWrap(state, figEl);
+      } else if (type === "media") {
+        node = this.video(state, figEl);
+      } else if (type === "supplementary-material") {
+        node = this.supplement(state, figEl);
+      }
+      if (node) {
+        nodes.push(node);
+      }
+    }
+    this.show(state, nodes);
+  }
+};
 
 };
 

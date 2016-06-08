@@ -1,5 +1,5 @@
 'use strict';
- 
+
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var browserify = require('browserify');
@@ -37,7 +37,6 @@ gulp.task('browserify', function () {
             console.log(error.stack);
             this.emit('end');
         })
-        .pipe(uglify())
         .pipe(rename('lens.js'))
         .pipe(gulp.dest('./dist'));
 });

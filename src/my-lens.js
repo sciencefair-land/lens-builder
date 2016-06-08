@@ -26,8 +26,8 @@ LensApp.Prototype = function() {
 
   this.getConverters = function(converterOptions) {
     return [
-      new SciFairEuPmcConverter(converterOptions),
       new SciFaireLifeConverter(converterOptions),
+      new SciFairEuPmcConverter(converterOptions),
       new ElifeConverter(converterOptions),
       new LensConverter(converterOptions)
     ]

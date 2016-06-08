@@ -16,7 +16,7 @@ SciFairEuPmcConverter.Prototype = function() {
   this.test = function(xmlDoc, documentUrl) {
     // save the doc url inside the doc so we can access it later
     xmlDoc.documentUrl = documentUrl
-    return /PMC[0-9]+/.test(documentUrl)
+    return /PMC/.test(documentUrl)
   };
 
   // Resolve asset urls
